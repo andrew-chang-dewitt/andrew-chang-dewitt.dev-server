@@ -6,7 +6,7 @@ import nodemailer from 'nodemailer'
 const app = express()
 const port = 3000
 
-const contactAddress = 'contact@andrew-chang-dewitt.dev'
+const contactAddress = 'hello@andrew-chang-dewitt.dev'
 
 const mailer = nodemailer.createTransport({
   service: 'Gmail',
@@ -28,8 +28,10 @@ app.post('/reach-out', (req, res) => {
       html: req.body.message,
     },
     function (err, info) {
-      if (err) return res.status(500).send(err)
-      else res.json({ success: true })
+      if (err) {
+        console.error(err)
+        return res.status(500).send(err)
+      } else res.json({ success: true })
     }
   )
 })
