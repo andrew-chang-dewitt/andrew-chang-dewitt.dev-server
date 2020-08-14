@@ -22,10 +22,10 @@ app.use(express.json())
 app.post('/reach-out', (req, res) => {
   mailer.sendMail(
     {
-      from: req.body.email,
+      replyTo: req.body.email,
       to: contactAddress,
       subject: req.body.subject,
-      html: req.body.message,
+      text: req.body.message,
     },
     function (err, info) {
       if (err) {
